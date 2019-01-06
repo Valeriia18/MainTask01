@@ -16,7 +16,8 @@ import java.util.Random;
 selection, quick, merge);
 
  
-  @version 1.0 26 Dec 2018
+      @version 1.0 26 Dec 2018
+      @version 2.0 06 Jan 2019
   @author Valeriia Amialchenia
  */
 public class Logic {
@@ -31,292 +32,343 @@ public class Logic {
         return myArray;
     }
 
-    public static int findMaxElement(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
-        int result = arrayIn[0];
-
-        for (int i = 0; i < arrayIn.length; i++) {
-            if (arrayIn[i] > result) {
-                result = arrayIn[i];
+    public static int findMaxElement(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        int result = 0;
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+           result = arrayIn[0]; 
+            for (int i = 0; i < arrayIn.length; i++) {
+                if (arrayIn[i] > result) {
+                    result = arrayIn[i];
+                }
             }
         }
         return result;
     }
 
-    public static int findMinElement(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
-        int result = arrayIn[0];
-        for (int i = 0; i < arrayIn.length; i++) {
-            if (arrayIn[i] < result) {
-                result = arrayIn[i];
+    public static int findMinElement(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        int result = 0;
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            result = arrayIn[0];
+            for (int i = 0; i < arrayIn.length; i++) {
+                if (arrayIn[i] < result) {
+                    result = arrayIn[i];
+                }
             }
         }
         return result;
     }
 
-    public static double CountArithmeticalAverage(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
+    public static double CountArithmeticalAverage(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
         double result = 0;
-        for (int i = 0; i < arrayIn.length; i++) {
-            result += arrayIn[i];
-        }
-        if (arrayIn.length != 0) {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 0; i < arrayIn.length; i++) {
+                result += arrayIn[i];
+                
+            }
             result = result / arrayIn.length;
         }
         return result;
     }
 
-    public static double CountGeometricAverage(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
+    public static double CountGeometricAverage(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
         double result = 1;
-        for (int i = 0; i < arrayIn.length; i++) {
-            result = result * arrayIn[i];
-        }
-        if ((arrayIn.length != 0) & (result > 0)) {
-            return Math.pow(result, 1.0 / arrayIn.length);
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
         } else {
-            return result = -1;
+            //result = arrayIn[0];
+            for (int i = 0; i < arrayIn.length; i++) {
+                result = result * arrayIn[i];
+            }
+            if (result > 0) {
+                return Math.pow(result, 1.0 / arrayIn.length);
+            } else {
+                return result = -1;
+            }
         }
     }
 
-    public static boolean isIncreasingSequence(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return false;
-        }
+    public static boolean isIncreasingSequence(int[] arrayIn)  throws NullArrayException, ZeroLengthArrayException {
         boolean result = false;
-        for (int i = 1; i < arrayIn.length; i++) {
-            if (arrayIn[i] > arrayIn[i - 1]) {
-                result = true;
-            } else {
-                return false;
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 1; i < arrayIn.length; i++) {
+                if (arrayIn[i] > arrayIn[i - 1]) {
+                    result = true;
+                } else {
+                    return false;
+                }
             }
         }
         return result;
     }
 
-    public static boolean isDecreasingSequence(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return false;
-        }
+    public static boolean isDecreasingSequence(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
         boolean result = false;
-        for (int i = 1; i < arrayIn.length; i++) {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 1; i < arrayIn.length; i++) {
 
-            if (arrayIn[i] < arrayIn[i - 1]) {
-                result = true;
-            } else {
-                return false;
+                if (arrayIn[i] < arrayIn[i - 1]) {
+                    result = true;
+                } else {
+                    return false;
+                }
             }
         }
         return result;
     }
 
-    public static int findLocalMin(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
+    public static int findLocalMin(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException{
+        int result = -1;
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 1; i < arrayIn.length - 1; i++) {
+                if (arrayIn[i] < arrayIn[i - 1] & arrayIn[i] < arrayIn[i + 1]) {
+                    return i;
+                }
+            }
         }
-        for (int i = 1; i < arrayIn.length - 1; i++) {
-            if (arrayIn[i] < arrayIn[i - 1] & arrayIn[i] < arrayIn[i + 1]) {
-                return i;
+        return result;
+    }
+
+    public static int findLocalMax(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 1; i < arrayIn.length - 1; i++) {
+                if (arrayIn[i] > arrayIn[i - 1] & arrayIn[i] > arrayIn[i + 1]) {
+                    return i;
+                }
             }
         }
         return -1;
     }
 
-    public static int findLocalMax(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
-        for (int i = 1; i < arrayIn.length - 1; i++) {
-            if (arrayIn[i] > arrayIn[i - 1] & arrayIn[i] > arrayIn[i + 1]) {
-                return i;
+    public static int[] reverseArray(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 0; i < (arrayIn.length / 2); i++) {
+                arrayIn[i] += arrayIn[arrayIn.length - 1 - i]; //  a = a+b
+                arrayIn[arrayIn.length - 1 - i] = arrayIn[i] - arrayIn[arrayIn.length - 1 - i];   //  b = a-b
+                arrayIn[i] -= arrayIn[arrayIn.length - 1 - i]; //  a = a-b
             }
-        }
-        return -1;
-    }
-
-    public static int[] reverseArray(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
-        }
-        for (int i = 0; i < (arrayIn.length / 2); i++) {
-            arrayIn[i] += arrayIn[arrayIn.length - 1 - i]; //  a = a+b
-            arrayIn[arrayIn.length - 1 - i] = arrayIn[i] - arrayIn[arrayIn.length - 1 - i];   //  b = a-b
-            arrayIn[i] -= arrayIn[arrayIn.length - 1 - i]; //  a = a-b
         }
         return arrayIn;
     }
 
-    public static int searchElementLinear(int[] arrayIn, int element) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
-        for (int i = 0; i < arrayIn.length; i++) {
-            if (arrayIn[i] == element) {
-                return i;
+    public static int searchElementLinear(int[] arrayIn, int element) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 0; i < arrayIn.length; i++) {
+                if (arrayIn[i] == element) {
+                    return i;
+                }
             }
         }
         return -1;
     }
 
-    public static int searchElementBinary(int[] arrayIn, int element) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return -1;
-        }
+    public static int searchElementBinary(int[] arrayIn, int element) throws NullArrayException, ZeroLengthArrayException {
         int[] sortedArray = Logic.bubbleSort(arrayIn);
 
         int i = -1;
-        int min = 0;
-        int max = sortedArray.length;
-        int mid;
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
 
-        while (min < max) {
+            int min = 0;
+            int max = sortedArray.length;
+            int mid;
 
-            mid = (min + max) / 2;
+            while (min < max) {
 
-            if (element == sortedArray[mid]) {
-                i = mid;
-                break;
-            } else {
-                if (element <= sortedArray[mid]) {
-                    max = mid;
+                mid = (min + max) / 2;
+
+                if (element == sortedArray[mid]) {
+                    i = mid;
+                    break;
                 } else {
-                    min = mid + 1;
+                    if (element <= sortedArray[mid]) {
+                        max = mid;
+                    } else {
+                        min = mid + 1;
+                    }
                 }
-            }
 
+            }
         }
         return i;
     }
 
-    public static int[] bubbleSort(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
-        }
-        for (int i = 0; i < arrayIn.length; i++) {
-            for (int j = 1; j < arrayIn.length - i; j++) {
-                if (arrayIn[j - 1] > arrayIn[j]) {
-                    int temp = arrayIn[j - 1];
-                    arrayIn[j - 1] = arrayIn[j];
-                    arrayIn[j] = temp;
+    public static int[] bubbleSort(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            for (int i = 0; i < arrayIn.length; i++) {
+                for (int j = 1; j < arrayIn.length - i; j++) {
+                    if (arrayIn[j - 1] > arrayIn[j]) {
+                        int temp = arrayIn[j - 1];
+                        arrayIn[j - 1] = arrayIn[j];
+                        arrayIn[j] = temp;
+                    }
                 }
             }
         }
-
         return arrayIn;
     }
 
-    public static int[] shakerSort(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
-        }
-        boolean change = true;
-        int start = 0;
-        int end = arrayIn.length;
+    public static int[] shakerSort(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            boolean change = true;
+            int start = 0;
+            int end = arrayIn.length;
 
-        while (change == true) {
-            change = false;
+            while (change == true) {
+                change = false;
 
-            for (int i = start; i < end - 1; ++i) {
-                if (arrayIn[i] > arrayIn[i + 1]) {
-                    int temp = arrayIn[i];
-                    arrayIn[i] = arrayIn[i + 1];
-                    arrayIn[i + 1] = temp;
-                    change = true;
+                for (int i = start; i < end - 1; ++i) {
+                    if (arrayIn[i] > arrayIn[i + 1]) {
+                        int temp = arrayIn[i];
+                        arrayIn[i] = arrayIn[i + 1];
+                        arrayIn[i + 1] = temp;
+                        change = true;
+                    }
                 }
-            }
 
-            if (change == false) {
-                break;
-            }
-
-            change = false;
-
-            end = end - 1;
-
-            for (int i = end - 1; i >= start; i--) {
-                if (arrayIn[i] > arrayIn[i + 1]) {
-                    int temp = arrayIn[i];
-                    arrayIn[i] = arrayIn[i + 1];
-                    arrayIn[i + 1] = temp;
-                    change = true;
+                if (change == false) {
+                    break;
                 }
+
+                change = false;
+
+                end = end - 1;
+
+                for (int i = end - 1; i >= start; i--) {
+                    if (arrayIn[i] > arrayIn[i + 1]) {
+                        int temp = arrayIn[i];
+                        arrayIn[i] = arrayIn[i + 1];
+                        arrayIn[i + 1] = temp;
+                        change = true;
+                    }
+                }
+
+                start = start + 1;
             }
-
-            start = start + 1;
         }
-
         return arrayIn;
     }
 
-    public static int[] insertionSort(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
-        }
+    public static int[] insertionSort(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
         int[] sortedArray = new int[arrayIn.length];
-        int destinationSize = 0;
-        for (int n = 0; n < arrayIn.length; n++) {
-            int insertIndex = 0;
-            if (destinationSize > 0) {
-                while (insertIndex < destinationSize
-                        && sortedArray[insertIndex] < arrayIn[n]) {
-                    insertIndex++;
-                }
-            }
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
 
-            for (int m = destinationSize - 1; m >= insertIndex; m--) {
-                sortedArray[m + 1] = sortedArray[m];
+            int destinationSize = 0;
+            for (int n = 0; n < arrayIn.length; n++) {
+                int insertIndex = 0;
+                if (destinationSize > 0) {
+                    while (insertIndex < destinationSize
+                            && sortedArray[insertIndex] < arrayIn[n]) {
+                        insertIndex++;
+                    }
+                }
+
+                for (int m = destinationSize - 1; m >= insertIndex; m--) {
+                    sortedArray[m + 1] = sortedArray[m];
+                }
+                sortedArray[insertIndex] = arrayIn[n];
+                destinationSize++;
             }
-            sortedArray[insertIndex] = arrayIn[n];
-            destinationSize++;
         }
         return sortedArray;
     }
 
-    public static int[] selectionSort(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
-        }
-        int min;
-        int x;
+    public static int[] selectionSort(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            int min;
+            int x;
 
-        for (int index = 0; index < arrayIn.length - 1; index++) {
-            min = index;
-            for (int scan = index + 1; scan < arrayIn.length; scan++) {
-                if (arrayIn[scan] < arrayIn[min]) {
-                    min = scan;
+            for (int index = 0; index < arrayIn.length - 1; index++) {
+                min = index;
+                for (int scan = index + 1; scan < arrayIn.length; scan++) {
+                    if (arrayIn[scan] < arrayIn[min]) {
+                        min = scan;
+                    }
                 }
-            }
 
-            x = arrayIn[min];
-            arrayIn[min] = arrayIn[index];
-            arrayIn[index] = x;
+                x = arrayIn[min];
+                arrayIn[min] = arrayIn[index];
+                arrayIn[index] = x;
+            }
         }
         return arrayIn;
     }
 
-    public static int[] mergeSort(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
-        }
-        if (arrayIn.length < 2) {
-            return arrayIn;
-        }
-        int m = arrayIn.length / 2;
-        int[] arr1 = Arrays.copyOfRange(arrayIn, 0, m);
-        int[] arr2 = Arrays.copyOfRange(arrayIn, m, arrayIn.length);
-        return subMergeSort(mergeSort(arr1), mergeSort(arr2));
-    }
-//merging two arrays into one sorted array
+    public static int[] mergeSort(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            if (arrayIn.length < 2) {
+                return arrayIn;
+            }
+            int m = arrayIn.length / 2;
+            int[] arr1 = Arrays.copyOfRange(arrayIn, 0, m);
+            int[] arr2 = Arrays.copyOfRange(arrayIn, m, arrayIn.length);
 
-    public static int[] subMergeSort(int[] arr1, int arr2[]) {
+            return subMergeSort(mergeSort(arr1), mergeSort(arr2));
+        }
+    }
+
+//merging two arrays into one sorted array
+    public static int[] subMergeSort(int[] arr1, int arr2[]) throws NullArrayException, ZeroLengthArrayException {
         int n = arr1.length + arr2.length;
         int[] arr = new int[n];
         int i1 = 0;
@@ -337,15 +389,18 @@ public class Logic {
         return arr;
     }
 
-    public static int[] quickSort(int[] arrayIn) {
-        if ((arrayIn == null) || (arrayIn.length == 0)) {
-            return null;
+    public static int[] quickSort(int[] arrayIn) throws NullArrayException, ZeroLengthArrayException {
+        if (arrayIn == null) {
+            throw new NullArrayException();
+        } else if (arrayIn.length == 0) {
+            throw new ZeroLengthArrayException();
+        } else {
+            subQuickSort(arrayIn, 0, arrayIn.length - 1);
+            return arrayIn;
         }
-        subQuickSort(arrayIn, 0, arrayIn.length - 1);
-        return arrayIn;
     }
 
-    private static void subQuickSort(int[] arrayIn, int start, int end) {
+    private static void subQuickSort(int[] arrayIn, int start, int end) throws NullArrayException, ZeroLengthArrayException {
         if (start >= end) {
             return;
         }
