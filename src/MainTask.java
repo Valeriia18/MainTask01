@@ -3,7 +3,8 @@ package by.epam.javatraining.ValeriiaAmialchenia.maintask01;
 import java.util.Arrays;
 
 /*
-  @version 1.0 26 Dec 2018
+    @version 1.0 26 Dec 2018
+    @version 2.0 06 Jan 2019
   @author Valeriia Amialchenia
  */
 public class MainTask {
@@ -11,7 +12,7 @@ public class MainTask {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws  NullArrayException, ZeroLengthArrayException {
         //
         // User input of number of elements of array
         //
