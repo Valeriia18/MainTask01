@@ -6,6 +6,7 @@ import java.util.Scanner;
 
  
   @version 1.0 26 Dec 2018
+  @version 2.0 06 Jan 2019
   @author Valeriia Amialchenia
  */
 
